@@ -1,0 +1,22 @@
+version: '2'
+
+services:
+  item-app:
+    image: docker.pkg.github.com/arzyadwan/item-app:v1
+    ports:
+      - "80:8080"
+    depends_on:
+      - item-db
+    restart: always  # Restart container jika terhenti
+
+  item-db:
+    image: mongo:3
+    volumes:
+      - app-db:/data/db
+    restart: always # Restart container jika terhenti
+
+volumes:
+  app-db:
+
+# Simpan logs ke berkas log.txt
+# Gunakan 'docker-compose logs > log.txt' untuk menyimpan logs setelah menjalankan aplikasi
